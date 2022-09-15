@@ -1,0 +1,21 @@
+version: "3.8"
+
+services:
+  express-test:
+    container_name: express-test
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    environment:
+      - TZ=Asia/Bangkok
+    ports:
+      - 3000
+    networks:
+      - express-test
+    #volumes:
+    #  - /home/p741633/sdb1/apps/express-test/.env:/usr/src/app/.env:ro
+networks:
+  express-test:
+    driver: bridge
+    name: express-test
