@@ -1,28 +1,28 @@
 pipeline {
-  // environment {
-  //   // PATH = "$PATH:/usr/local/bin"
-  //   PATH = "$PATH:/snap/bin"
-  // }
   agent any
   stages {
-    // stage('Verify') {
-    //   steps {
-    //     dir("Verify tooling") {
-    //       sh '''
-    //         docker info
-    //         docker version
-    //         docker-compose version
-    //       '''
-    //     }
-    //   }
-    // }
-    stage('Build') {
-      steps {
-        dir("Compose") {
-          sh "docker-compose -f docker-compose.dev.yml up -d --build"
-        }
+    stage('Copy Files') {
+      script {
+        echo 'Staging files'
+        sh "cp -v ${WORKSPACE}/* /home/apps/express-test"
       }
     }
+    // stage('SSH transfer') {
+    //   steps([$class: 'BapSshPromotionPublisherPlugin']) {
+    //     sshPublisher(
+    //       continueOnError: false, failOnError: true,
+    //         publishers: [
+    //                 sshPublisherDesc(
+    //                     configName: "aa43-docker",
+    //                     verbose: true,
+    //                     transfers: [
+    //                         sshTransfer(execCommand: "scp -r ${WORKSPACE} ./express-test"),
+    //                     ]
+    //                 )
+    //             ]
+    //         )
+    //     }
+    // }
   }
   post {
     failure {
