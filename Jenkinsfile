@@ -2,9 +2,10 @@ pipeline {
   agent any
   stages {
     stage('Copy Files') {
-      script {
-        echo 'Staging files'
-        sh "cp -v ${WORKSPACE}/* /home/apps/express-test"
+      step {
+        script {
+          sh "cp -v ${WORKSPACE}/* /home/apps/express-test"
+        }
       }
     }
     // stage('SSH transfer') {
@@ -12,16 +13,16 @@ pipeline {
     //     sshPublisher(
     //       continueOnError: false, failOnError: true,
     //         publishers: [
-    //                 sshPublisherDesc(
-    //                     configName: "aa43-docker",
-    //                     verbose: true,
-    //                     transfers: [
-    //                         sshTransfer(execCommand: "scp -r ${WORKSPACE} ./express-test"),
-    //                     ]
-    //                 )
+    //           sshPublisherDesc(
+    //             configName: "aa43-docker",
+    //             verbose: true,
+    //             transfers: [
+    //               sshTransfer(execCommand: "scp -r ${WORKSPACE} ./express-test"),
     //             ]
-    //         )
-    //     }
+    //           )
+    //         ]
+    //     )
+    //   }
     // }
   }
   post {
