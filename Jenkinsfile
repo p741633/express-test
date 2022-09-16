@@ -2,7 +2,7 @@ pipeline {
   agent any
   stages {
     stage('Copy Files') {
-      step {
+      steps {
         script {
           sh "cp -v ${WORKSPACE}/* /home/apps/express-test"
         }
