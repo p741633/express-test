@@ -13,7 +13,7 @@ pipeline {
         }
       }
     }
-    stage('SSH transfer') {
+    stage('Build') {
       steps([$class: 'BapSshPromotionPublisherPlugin']) {
         sshPublisher(
           continueOnError: false, failOnError: true,
@@ -23,6 +23,7 @@ pipeline {
                 verbose: true,
                 transfers: [
                   sshTransfer(execCommand: "cd ${host_location}"),
+                  sshTransfer(execCommand: "docker-compose up -d --build"),
                 ]
               )
             ]
