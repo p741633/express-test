@@ -14,7 +14,7 @@ WORKDIR /usr/src/app
 COPY --chown=node:node ./package.json ./package.json
 COPY --chown=node:node ./app.js ./app.js
 
-RUN npm ci
+RUN npm install
 
 EXPOSE 3010
 
