@@ -20,4 +20,4 @@ EXPOSE 3010
 
 USER node
 
-CMD [ "dumb-init", "node", "./app.js" ]
+CMD [ "node", "./app.js" ]
