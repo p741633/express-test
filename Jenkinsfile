@@ -7,7 +7,7 @@ pipeline {
       steps {
         script {
           sh "mkdir -p ${apps}"
-          sh "rm ${apps}/*"
+          sh "rm -rf ${apps}/*"
           sh "cp -vr ${WORKSPACE}/* ${apps}"
         }
       }
