@@ -22,8 +22,10 @@ pipeline {
                 configName: "aa43-docker",
                 verbose: true,
                 transfers: [
-                  sshTransfer(execCommand: "cd ${host_location}"),
-                  sshTransfer(execCommand: "docker-compose up -d --build"),
+                  sshTransfer(
+                    remoteDirectory: ${host_location},
+                    execCommand: "docker-compose up -d --build"
+                  ),
                 ]
               )
             ]
