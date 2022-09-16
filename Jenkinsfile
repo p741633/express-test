@@ -23,7 +23,7 @@ pipeline {
                 verbose: true,
                 transfers: [
                   sshTransfer(
-                    execCommand: "docker-compose up -f ${host_location}/docker-compose.yml -d --build"
+                    execCommand: "docker-compose -f ${host_location}/docker-compose.yml up -d --build"
                   ),
                 ]
               )
