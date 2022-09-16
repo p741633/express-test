@@ -1,10 +1,14 @@
+def apps = "/home/apps/express-test"
+
 pipeline {
   agent any
   stages {
     stage('Copy Files') {
       steps {
         script {
-          sh "cp -vr ${WORKSPACE}/* /home/apps/express-test"
+          sh "mkdir -p ${apps}"
+          sh "rm ${apps}/*"
+          sh "cp -vr ${WORKSPACE}/* ${apps}"
         }
       }
     }
