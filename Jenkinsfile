@@ -23,7 +23,7 @@ pipeline {
                 verbose: true,
                 transfers: [
                   sshTransfer(
-                    remoteDirectory: ${host_location},
+                    remoteDirectory: "${host_location}",
                     execCommand: "docker-compose up -d --build"
                   ),
                 ]
