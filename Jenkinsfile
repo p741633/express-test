@@ -1,5 +1,5 @@
-def app_name = "express-test"
-def app_location = "/home/apps/express-test"
+def host_location = "/home/p741633/sdb1/apps/express-test"
+def bind_location = "/home/apps/express-test"
 
 pipeline {
   agent any
@@ -7,9 +7,9 @@ pipeline {
     stage('Copy Files') {
       steps {
         script {
-          sh "mkdir -p ${app_location}"
-          sh "rm -rf ${app_location}/*"
-          sh "cp -vr ${WORKSPACE}/* ${app_location}"
+          sh "mkdir -p ${bind_location}"
+          sh "rm -rf ${bind_location}/*"
+          sh "cp -vr ${WORKSPACE}/* ${bind_location}"
         }
       }
     }
@@ -22,7 +22,7 @@ pipeline {
                 configName: "aa43-docker",
                 verbose: true,
                 transfers: [
-                  sshTransfer(execCommand: "cd ${app_name}"),
+                  sshTransfer(execCommand: "cd ${host_location}"),
                 ]
               )
             ]
