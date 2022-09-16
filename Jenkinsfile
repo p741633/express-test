@@ -4,7 +4,7 @@ pipeline {
     stage('Copy Files') {
       steps {
         script {
-          sh "cp -v ${WORKSPACE}/* /home/apps/express-test"
+          sh "cp -vr ${WORKSPACE}/* /home/apps/express-test"
         }
       }
     }
